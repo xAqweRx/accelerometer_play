@@ -1,11 +1,11 @@
 package com.example.android.accelerometerplay;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				intent = new Intent(this, AccelerometerPlayActivity.class);
 				break;
 			case R.id.waves:
-				intent = new Intent(this, AccelerometerPlayActivity.class);
+				intent = new Intent(this, WavesActivity.class);
 		}
 
 		if (intent != null)
