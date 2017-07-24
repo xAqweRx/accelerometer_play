@@ -26,6 +26,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				break;
 			case R.id.waves:
 				intent = new Intent(this, WavesActivity.class);
+				break;
+			case R.id.heat:
+				intent = new Intent(this, HeatHazeActivity.class);
+				break;
 		}
 
 		if (intent != null)
