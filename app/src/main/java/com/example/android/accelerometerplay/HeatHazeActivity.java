@@ -23,7 +23,7 @@ public class HeatHazeActivity extends Activity {
 
 	private Timer _timer = new Timer();
 
-	private int numberOfItems = 10;
+	private int numberOfItems = 20;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,8 @@ public class HeatHazeActivity extends Activity {
 		final HeatMap mHeatMap = (HeatMap) findViewById(R.id.heatmap);
 
 		mHeatMap.setMinimum(0);
-		mHeatMap.setMaximum(10000F);
+		mHeatMap.setMaximum(200);
+		mHeatMap.setRadius(1000);
 		randomData(mHeatMap);
 
 
@@ -54,44 +55,22 @@ public class HeatHazeActivity extends Activity {
 					@Override
 					public void run() {
 						randomData(mHeatMap);
+						mHeatMap.forceRefresh();
 					}
 				});
 			}
 
-		}, 2000, 50);
+		}, 7000, 100);
 	}
 
 
 	private void randomData(HeatMap mHeatMap) {
 		//add random data to the map
 		Random rand = new Random();
-		boolean forceRefreh = true;
-		if (values.isEmpty()) {
-			forceRefreh = false;
-			for (int i = 0; i < numberOfItems; i++) {
-				Point point = new Point(rand.nextFloat(), rand.nextFloat(), ( rand.nextDouble() * 100.0 ) );
-				values.add(point);
-			}
+		mHeatMap.clearData();
+		for (int i = 0; i < numberOfItems; i++) {
+			mHeatMap.addData(new HeatMap.DataPoint(rand.nextFloat(), rand.nextFloat(), rand.nextDouble() * 100.0));
 		}
-		else {
-			ArrayList<Point> temp = new ArrayList<>();
-
-			for (Point point : values) {
-				Point newPoint = new Point((point.x + rand.nextFloat() / 100 * (rand.nextFloat() > 0.5 ? -1 : 1)) % 1, (point.y + rand.nextFloat() / 100 * (rand.nextFloat() > 0.5 ? -1 : 1)) % 1, point.value + rand.nextDouble() * 100.0);
-				temp.add(newPoint);
-			}
-
-			values = temp;
-			mHeatMap.clearData();
-		}
-
-
-		for (Point point : values) {
-			mHeatMap.addData(new HeatMap.DataPoint(point.x, point.y, point.value));
-		}
-
-		if (forceRefreh)
-			mHeatMap.forceRefresh();
 	}
 
 	class Point {
