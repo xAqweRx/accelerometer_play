@@ -11,7 +11,6 @@
         android:id="@+id/heatmap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:maxOpacity="255"
-        app:minOpacity="20"/>
+        />
 
 </LinearLayout>

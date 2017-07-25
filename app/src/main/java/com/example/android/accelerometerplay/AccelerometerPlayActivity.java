@@ -231,14 +231,14 @@ public class AccelerometerPlayActivity extends Activity {
 		 * A particle system is just a collection of particles
 		 */
 		class ParticleSystem {
-			int numParticles = 10;
+			int numParticles = 5;
 			private ArrayList<Particle> mBalls = new ArrayList<>(numParticles);
 
 			ParticleSystem() {
                 /*
                  * Initially our particles have no speed or acceleration
                  */
-				for (int i = 0; i < mBalls.size(); i++) {
+				for (int i = 0; i < numParticles; i++) {
 					Particle item = new Particle(getContext());
 					item.setBackgroundResource(R.drawable.ball);
 					item.setLayerType(LAYER_TYPE_HARDWARE, null);

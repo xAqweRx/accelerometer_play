@@ -1,5 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
-/AccelerometerPlay.iml
+*.iml
 /local.properties
-/app/app.iml
